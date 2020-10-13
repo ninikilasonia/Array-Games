@@ -4,6 +4,7 @@ public class GamesWithArrays {
 
   public static int[] otherSort(int[] arr, int[] arr2) {
 	// TODO
+    return null;
   }
 
   public static int[] fairFriends(int[] arr, int[] arr2) {
