@@ -29,13 +29,13 @@ public class GamesWithArrays {
 
     return res;  }
 
-//  public static int[] fairFriends(int[] arr, int[] arr2) {
-//	// TODO
-//  }
-//
-//  public static boolean alps(int[] arr) {
-//    	// TODO
-//  }
+  public static int[] fairFriends(int[] arr, int[] arr2) {
+    return new int[] {};
+  }
+
+  public static boolean alps(int[] arr) {
+    return true;
+  }
 
   public static int[] plancton(int[] arr) {
     int max = Integer.MIN_VALUE;
@@ -59,7 +59,7 @@ public class GamesWithArrays {
       return new int[] {buy, sell, max};
     }  }
 
-//  public static int pinguFriends(int[] arr) {
-//    	// TODO
-//  }
+  public static int pinguFriends(int[] arr) {
+    return 0;
+  }
 }
