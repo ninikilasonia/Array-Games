@@ -41,9 +41,12 @@ public class GamesWithArrays {
 
     for(int i = 0; i < arr.length; i++){
       for(int j = 0; j < arr2.length; j++){
-        if (arr[i] + arr2[j] == avg){
-          res[0] = arr[i];
-          res[1] = arr2[j];
+        if(arr[i] + arr2[j] == avg) {
+            res[0] = arr[i];
+            int comp = arrSum(arr, 0) - arr[i];
+            for(int el : arr2){
+              if(comp + el == avg) res[1] = el;
+            }
         }
       }
     }
