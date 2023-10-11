@@ -29,8 +29,25 @@ public class GamesWithArrays {
 
     return res;  }
 
+  public static int arrSum(int[] arr, int i){
+    if(i >= arr.length) return 0;
+    return arr[i] + arrSum(arr, i+1);
+  }
+
   public static int[] fairFriends(int[] arr, int[] arr2) {
-    return new int[] {};
+    int avg = (arrSum(arr, 0) + arrSum(arr2, 0)) / 2;
+
+    int[] res = new int[2];
+
+    for(int i = 0; i < arr.length; i++){
+      for(int j = 0; j < arr2.length; j++){
+        if (arr[i] + arr2[j] == avg){
+          res[0] = arr[i];
+          res[1] = arr2[j];
+        }
+      }
+    }
+    return res;
   }
 
   public static boolean alps(int[] arr) {
