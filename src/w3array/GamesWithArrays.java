@@ -128,7 +128,9 @@ public class GamesWithArrays {
     int[] resArr = new int[len];
     System.arraycopy(groups, 0, resArr, 0, len);
 
+
     for (int i = 0; i < len - 1; i++) {
+      if (resArr[i+1] % resArr[i] == 0 && resArr[i] != resArr[i+1]) return resArr[i];
       if (resArr[i] != resArr[i + 1]) return 0;
     }
 
