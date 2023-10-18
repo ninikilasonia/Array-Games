@@ -1,5 +1,7 @@
 package fop.w3array;
 
+import java.util.Arrays;
+
 public class GamesWithArrays {
   public static boolean contains(int[] arr, int target){
     for(int el : arr){
@@ -103,16 +105,55 @@ public class GamesWithArrays {
     }  }
 
   public static int pinguFriends(int[] arr) {
-    return 0;
+    if (arr.length == 1) return 0;
+    int[] sorted = Arrays.stream(arr).sorted().toArray();
+    int[] groups = new int[50];
+    int group = 1;
+    int index = 0;
+
+    for(int i = 0; i < sorted.length-1; i++){
+      if(sorted[i] == sorted[i+1]) group++;
+      else {
+        groups[index] = group;
+        index++;
+        group = 1;
+      }
+    }
+    groups[index] = group;
+
+    int len = 0;
+      for (int j : groups) {
+          if (j != 0) len++;
+      }
+    int[] resArr = new int[len];
+    System.arraycopy(groups, 0, resArr, 0, len);
+
+    for (int i = 0; i < len - 1; i++) {
+      if (resArr[i] != resArr[i + 1]) return 0;
+    }
+
+    return resArr[0];
   }
 
   public static void main(String[] args){
-    int[] arr1 = new int[] {2,1};
-    int[] arr2 = new int[] {3, 5, 6, 7, 5, 7, 1};
-    int[] arr3 = new int[] {3, 5, 6, 7, 5, 3, 1};
+//    int[] arr1 = new int[] {2,1};
+//    int[] arr2 = new int[] {3, 5, 6, 7, 5, 7, 1};
+//    int[] arr3 = new int[] {3, 5, 6, 7, 5, 3, 1};
+//
+//    System.out.println(alps(arr1));
+//    System.out.println(alps(arr2));
+//    System.out.println(alps(arr3));
 
-    System.out.println(alps(arr1));
-    System.out.println(alps(arr2));
-    System.out.println(alps(arr3));
+    int[] arr1 = new int[] {1,2,3,4,4,3,2,1};
+    int[] arr2 = new int[] {1,1,1,2,2,2,3,3};
+    int[] arr3 = new int[] {1};
+    int[] arr4 = new int[] {1,1};
+    int[] arr5 = new int[] {1,1,2,2,2,2};
+
+    System.out.println(pinguFriends(arr1));
+    System.out.println(pinguFriends(arr2));
+    System.out.println(pinguFriends(arr3));
+    System.out.println(pinguFriends(arr4));
+    System.out.println(pinguFriends(arr5));
   }
 }
