@@ -39,22 +39,45 @@ public class GamesWithArrays {
 
     int[] res = new int[2];
 
-    for(int i = 0; i < arr.length; i++){
-      for(int j = 0; j < arr2.length; j++){
-        if(arr[i] + arr2[j] == avg) {
-            res[0] = arr[i];
-            int comp = arrSum(arr, 0) - arr[i];
-            for(int el : arr2){
-              if(comp + el == avg) res[1] = el;
-            }
-        }
+      for (int j : arr) {
+          for (int k : arr2) {
+              if (j + k == avg) {
+                  res[0] = j;
+                  int comp = arrSum(arr, 0) - j;
+                  for (int el : arr2) {
+                      if (comp + el == avg) res[1] = el;
+                  }
+              }
+          }
       }
-    }
     return res;
   }
 
+  public static int[] isMore(int[] arr, int index, int x){
+    if(index >= arr.length-1) return new int[] {x, index};
+    else if (arr[index] < arr[index+1]) return isMore(arr, index+1, x);
+    else if (arr[index] == arr[index+1]) return new int[] {-1, index};
+    else return new int[] {x+1, index};
+  }
+
+  public static int[] isLess(int[] arr, int index, int x){
+    if(index >= arr.length-1) return new int[] {x, index};
+    else if (arr[index] > arr[index+1]) return isLess(arr, index+1, x);
+    else if (arr[index] == arr[index+1]) return new int[] {-1,index};
+    else return new int[] {x+1, index};
+  }
+
+
   public static boolean alps(int[] arr) {
-    return true;
+    if(arr.length <= 2) return false;
+    int[] temp = isMore(arr, 0, 0);
+    if(temp[0] == -1 || temp[0] == 0) return false;
+    if(temp[0] == 1){
+      int[] temp2 = isLess(arr, temp[1]+1, 1);
+      if(temp2[0] == -1) return false;
+      return temp2[0] == 1;
+    }
+    return false;
   }
 
   public static int[] plancton(int[] arr) {
@@ -81,5 +104,15 @@ public class GamesWithArrays {
 
   public static int pinguFriends(int[] arr) {
     return 0;
+  }
+
+  public static void main(String[] args){
+    int[] arr1 = new int[] {2,1};
+    int[] arr2 = new int[] {3, 5, 6, 7, 5, 7, 1};
+    int[] arr3 = new int[] {3, 5, 6, 7, 5, 3, 1};
+
+    System.out.println(alps(arr1));
+    System.out.println(alps(arr2));
+    System.out.println(alps(arr3));
   }
 }
